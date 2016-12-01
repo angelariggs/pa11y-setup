@@ -76,7 +76,7 @@ Once you've set up the project's dashboard by adding URLs and running Pa11y agai
 Restoring the database is what allows a different user to access the project's Pa11y Dashboard. The steps here assume that the person pulling the Pa11y database already has the Pa11y repo set up.
 
 * Navigate to the *project repo* and pull the latest code, so you have the config file. If the PR was merged by the time you've gotten to this step, you'll have the database dump on the dev branch. Otherwise, hope that Past You or your coworkers used a logical branch name for their commit.
-        * If this is your first time using Pa11y on this project, you'll need to create a local [symlink](http://apple.stackexchange.com/questions/115646/how-can-i-create-a-symbolic-link-in-terminal) from this config file to the pa11y repo, making sure to use absolute paths.
+        * If this is your first time using Pa11y on a particular project, you'll need to create a local [symlink](http://apple.stackexchange.com/questions/115646/how-can-i-create-a-symbolic-link-in-terminal) from the config file to your local pa11y repo, making sure to use absolute paths. No need to commit that symlinked file.
     * Example: `ln -s ~/Sites/schrodinger/tests/pa11y/config/schrodinger.json ~/Sites/pa11y/config`
 * Navigate to the pa11y repo and pull the latest code.
 * Get the database dump by running `mongorestore --db=<project> /Users/<user>/Sites/<project>/tests/pa11y/data/<project db>`.
