@@ -36,7 +36,7 @@ Metal Toad's Pa11y repo will hold a sample config file (`config.sample.json`) an
     * **NAMING CONVENTION:** The database name should match the name of the config file. Following our previous examples, the database name for our `schrodinger.json` file would be `mongodb://localhost/schrodinger`.
 * Create a [symlink](http://apple.stackexchange.com/questions/115646/how-can-i-create-a-symbolic-link-in-terminal) from this config file to the pa11y repo, making sure to use absolute paths.
     * Example: `ln -s ~/Sites/schrodinger/tests/pa11y/config/schrodinger.json ~/Sites/pa11y/config`
-* Commit the config file to the project repo
+* Commit the config file to the project repo; no need to commit the symlinked file.
 
 #Using the Pa11y Dashboard
 
@@ -75,7 +75,9 @@ Once you've set up the project's dashboard by adding URLs and running Pa11y agai
 
 Restoring the database is what allows a different user to access the project's Pa11y Dashboard. The steps here assume that the person pulling the Pa11y database already has the Pa11y repo set up.
 
-* Navigate to the project repo and pull the latest code. If the PR was merged by the time you've gotten to this step, you'll have the database dump on the dev branch. Otherwise, hope that Past You or your coworkers used a logical branch name for their commit.
+* Navigate to the *project repo* and pull the latest code, so you have the config file. If the PR was merged by the time you've gotten to this step, you'll have the database dump on the dev branch. Otherwise, hope that Past You or your coworkers used a logical branch name for their commit.
+        * If this is your first time using Pa11y on this project, you'll need to create a local [symlink](http://apple.stackexchange.com/questions/115646/how-can-i-create-a-symbolic-link-in-terminal) from this config file to the pa11y repo, making sure to use absolute paths.
+    * Example: `ln -s ~/Sites/schrodinger/tests/pa11y/config/schrodinger.json ~/Sites/pa11y/config`
 * Navigate to the pa11y repo and pull the latest code.
 * Get the database dump by running `mongorestore --db=<project> /Users/<user>/Sites/<project>/tests/pa11y/data/<project db>`.
     * Using Schrodinger as our example, the full command would be `mongorestore --db=schrodinger /Users/<user>/Sites/schrodinger/tests/pa11y/data/schrodinger`
