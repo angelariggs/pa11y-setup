@@ -1,6 +1,8 @@
 Pa11y Dashboard
 ===============
 
+**The Metal Toad-specific README for setup and use is in the `/config` directory of this repo.**
+
 Pa11y Dashboard is a web interface to the [Pa11y][pa11y] accessibility reporter; allowing you to focus on *fixing* issues rather than hunting them down.
 
 ![Version][shield-version]
@@ -10,7 +12,7 @@ Pa11y Dashboard is a web interface to the [Pa11y][pa11y] accessibility reporter;
 
 ---
 
-✨ 🔜 ✨ The Pa11y team is very excited to announce plans for the successor to Pa11y Dashboard and Pa11y Webservice, codename "Sidekick". Help us define the features that you want to see by visiting the [proposal][sidekick-proposal]. ✨  
+✨ 🔜 ✨ The Pa11y team is very excited to announce plans for the successor to Pa11y Dashboard and Pa11y Webservice, codename "Sidekick". Help us define the features that you want to see by visiting the [proposal][sidekick-proposal]. ✨
 
 ---
 
@@ -134,7 +136,7 @@ If you're opening issues related to these, please mention the version that the i
 License
 -------
 
-Pa11y Dashboard is licensed under the [GNU General Public License 3.0][info-license].  
+Pa11y Dashboard is licensed under the [GNU General Public License 3.0][info-license].
 Copyright &copy; 2013–2016, Springer Nature
 
 
