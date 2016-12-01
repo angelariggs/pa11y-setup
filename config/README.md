@@ -29,13 +29,13 @@ Metal Toad's Pa11y repo will hold a sample config file (`config.sample.json`) an
 ##Creating a New Config File
 
 * Navigate to `<project>/tests/pa11y/config`. Copy `config.sample.json` from the Pa11y repo to the project repo with `cp ~/Sites/pa11y/config/config.sample.json <project name>.json`.
-    * **NAMING CONVENTION:** Name the config file after the project repo. For example, a pa11y config file for the Schrodinger repo would be named `schrodinger.json`.
+    * **NAMING CONVENTION:** Name the config file after the project repo name. For example, a pa11y config file for a Floofs repo would be named `floof.json`.
 * Open your new config file in the editor of choice. Change the `siteMessage` value to match your project's name and environment, and the standards you're testing against.
-    * **NAMING CONVENTION:** For example, if this config file was for testing AA accessibility standards on the Schrodinger staging site, your `siteMessage` value would be `"Schrodinger Staging Site: AA Accessibility Check"`.
+    * **NAMING CONVENTION:** For example, if this config file was for testing AA accessibility standards on the Floof staging site, your `siteMessage` value would be `"Floof Staging Site: AA Accessibility Check"`.
 * In the `webservice` object, replace the `<project name>` placeholder with the actual database name you want to use.
-    * **NAMING CONVENTION:** The database name should match the name of the config file. Following our previous examples, the database name for our `schrodinger.json` file would be `mongodb://localhost/schrodinger`.
+    * **NAMING CONVENTION:** The database name should match the name of the config file. Following our previous examples, the database name for our `floof.json` file would be `mongodb://localhost/floof`. If you're going to have a Dashboard for different environments on the same project, include the environment in all of your naming. E.g. `floof-staging.json` for the config file and `mongodb://localhost/floof-staging` for the database name.
 * Create a [symlink](http://apple.stackexchange.com/questions/115646/how-can-i-create-a-symbolic-link-in-terminal) from this config file to the pa11y repo, making sure to use absolute paths.
-    * Example: `ln -s ~/Sites/schrodinger/tests/pa11y/config/schrodinger.json ~/Sites/pa11y/config`
+    * Example: `ln -s ~/Sites/<project>/tests/pa11y/config/<project>.json ~/Sites/pa11y/config`
 * Commit the config file to the project repo; no need to commit the symlinked file.
 
 #Using the Pa11y Dashboard
@@ -44,8 +44,8 @@ The Pa11y Dashboard is run locally from the pa11y repo. This is where you'll add
 
 ##Dashboard URLs
 
-* In your CLI, navigate to the pa11y repo and start the node server with `NODE_ENV=<project name> node index.js
-    ** The parameter for `NODE_ENV` is the name of the config file. So if we wanted the dashboard for our `schrodinger.json` config file, you'd run`NODE_ENV=schrodinger node index.js`.
+* In your CLI, navigate to the pa11y repo and start the node server with `NODE_ENV=<project name> node index.js`
+    * The parameter for `NODE_ENV` is the name of the config file. So if we wanted the dashboard for our `floof.json` config file, you'd run`NODE_ENV=floof node index.js`.
 * Go to `http://localhost:4000/` in your browser and click 'Add new URL'.
 * Fill out the appropriate fields, and then click 'Add URL'. **NOTE:** After you add and save a new URL, the URL and Standard fields *cannot* be edited later.
     * Name: Be brief but clear
@@ -66,7 +66,7 @@ By design, Pa11y accessibility tests are run locally. We use some MongoDB comman
 Once you've set up the project's dashboard by adding URLs and running Pa11y against each of them, you'll need to dump the database into the project repo.
 * From the pa11y repo, run `mongodump --db=<project> --out=/Users/<user>/Sites/<project>/tests/pa11y/data`.
     * **NOTE:** You do have to use the full `/Users/<user>` instead of `~` for the `out` parameter.
-    * The `db` parameter comes from the database name in our config file. Using Schrodinger as an example, we named the database `mongodb://localhost/schrodinger`, so the full command would be `mongodump --db=schrodinger --out=/Users/<user>/Sites/schrodinger/tests/pa11y/data`
+    * The `db` parameter comes from the database name in our config file. Using the previous Floof repo example, we named the database `mongodb://localhost/floof`, so the full command would be `mongodump --db=floof --out=/Users/<user>/Sites/floof/tests/pa11y/data`
 * In the project's repo, verify that the database folder was created. You should see `<project>/tests/pa11y/data/<project db>`.
     * The `<project db>` folder should have 4 files: `results.bson`, `results.metadata.json`, `tasks.bson`, and `tasks.metadata.json`. The tasks refer to the URLs you added in the Dashboard, and the results refer to the results of running Pa11y against those URLs.
 * Commit these changes to the repo and put in a PR, so the next user can pull down the database. **NAMING CONVENTION:** Let's use `pa11y` for the branch name, in case someone will be using the Dashboard before the PR is merged. Don't make the next person guess which branch they need to checkout.
@@ -77,10 +77,10 @@ Restoring the database is what allows a different user to access the project's P
 
 * Navigate to the *project repo* and pull the latest code, so you have the config file. If the PR was merged by the time you've gotten to this step, you'll have the database dump on the dev branch. Otherwise, hope that Past You or your coworkers used a logical branch name for their commit.
         * If this is your first time using Pa11y on a particular project, you'll need to create a local [symlink](http://apple.stackexchange.com/questions/115646/how-can-i-create-a-symbolic-link-in-terminal) from the config file to your local pa11y repo, making sure to use absolute paths. No need to commit that symlinked file.
-    * Example: `ln -s ~/Sites/schrodinger/tests/pa11y/config/schrodinger.json ~/Sites/pa11y/config`
+    * Example: `ln -s ~/Sites/floof/tests/pa11y/config/floof.json ~/Sites/pa11y/config`
 * Navigate to the pa11y repo and pull the latest code.
 * Get the database dump by running `mongorestore --db=<project> /Users/<user>/Sites/<project>/tests/pa11y/data/<project db>`.
-    * Using Schrodinger as our example, the full command would be `mongorestore --db=schrodinger /Users/<user>/Sites/schrodinger/tests/pa11y/data/schrodinger`
+    * Using the Floof repo example, the full command would be `mongorestore --db=floof /Users/<user>/Sites/floof/tests/pa11y/data/floof`
 
 Now you're ready to access the project's Pa11y Dashboard! Go back up to the [Using the Pa11y Dashboard](#using-the-pa11y-dashboard) section for steps. If you make changes to the existing URLs, add or delete URLs, or run Pa11y on any of the URLs, you'll need to do another database dump.
 
