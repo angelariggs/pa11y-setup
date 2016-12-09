@@ -1,0 +1,7 @@
+# Gitignore for the config folder
+# There is a .gitignore in the repo root, but add this separate one to reduce
+# interaction with upstream changes
+
+/*.json
+# ... but, preserve the sample
+!/config.sample.json
