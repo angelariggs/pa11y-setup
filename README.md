@@ -1,7 +1,9 @@
 Pa11y Dashboard
 ===============
 
-**The Metal Toad-specific README for setup and use is in the `/config` directory of this repo.**
+### NOTE: The Metal Toad-specific README for setup and use is in the [/config](https://github.com/metaltoad/pa11y/tree/master/config) directory of this repo.
+
+---
 
 Pa11y Dashboard is a web interface to the [Pa11y][pa11y] accessibility reporter; allowing you to focus on *fixing* issues rather than hunting them down.
 
