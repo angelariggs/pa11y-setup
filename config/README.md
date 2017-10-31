@@ -25,7 +25,7 @@ Metal Toad's Pa11y repo will hold a sample config file (`config.sample.json`) an
 **NAMING CONVENTIONS:** Please pay attention to the naming conventions mentioned throughout this README. If you don't, I will know and I will find you, and I will make you pay. Also note that we're using `pa11y`, after the `a11y` convention, *not* `pally`.
 
 * Navigate to the project's `tests` directory. Create a `pa11y` directory with a `config` and a `data` sub-folder. You should end up with `<project root>/tests/pa11y/config` and `<project root>/tests/pa11y/data`.
-* Copy the Pa11y config README (`pa11y/config/README.md`) into the `tests/pa11y` directory.
+* Link to the [Pa11y config README](https://github.com/metaltoad/pa11y/blob/master/config/README.md) in the `tests/pa11y` directory.
 
 ## Creating a New Config File
 
