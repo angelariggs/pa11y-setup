@@ -12,6 +12,8 @@ Pa11y Dashboard is a web interface to the [Pa11y][pa11y] accessibility reporter;
 
 ---
 
+## Latest news from Pa11y
+
 ✨ 🔜 ✨ The Pa11y team is very excited to announce plans for the successor to Pa11y Dashboard and Pa11y Webservice, codename "Sidekick". Help us define the features that you want to see by visiting the [proposal][sidekick-proposal]. ✨
 
 ---
@@ -24,7 +26,7 @@ Pa11y Dashboard is a web interface to the [Pa11y][pa11y] accessibility reporter;
 Setup
 -----
 
-Pa11y Dashboard requires [Node.js][node] 4+ and [PhantomJS][phantom]. See the [Pa11y][pa11y] documentation for detailed instructions on how to install these dependencies on your operating system.
+Pa11y Dashboard requires [Node.js][node] 4+. See the [Pa11y][pa11y] documentation for detailed instructions on how to install this on your operating system.
 
 You'll also need to have [MongoDB][mongo] installed and running. See the [MongoDB install guide][mongo-install] for more information on this.
 
@@ -84,26 +86,24 @@ The boot configurations for Pa11y Dashboard are as follows. Look at the sample J
 This can either be an object containing [Pa11y Webservice configurations][pa11y-webservice-config], or a string which is the base URL of a [Pa11y Webservice][pa11y-webservice] instance you are running separately. If using environment variables, prefix the webservice vars with `WEBSERVICE_`.
 
 
-Development
------------
+Contributing
+------------
 
-To develop Pa11y Dashboard, you'll need to clone the repo and get set up as outlined in the [setup guide](#setup).
+There are many ways to contribute to Pa11y Dashboard, we cover these in the [contributing guide](CONTRIBUTING.md) for this repo.
 
-You'll need to start the application in test mode with:
+If you're ready to contribute some code, you'll need to clone the repo and get set up as outlined in the [setup guide](#setup). You'll then need to start the application in test mode with:
 
 ```sh
 NODE_ENV=test node index.js
 ```
 
-Now you'll be able to run the following commands:
+You'll now be able to run the following commands:
 
 ```sh
-make       # Run the lint and test tasks together
-make lint  # Run linters with the correct config
-make test  # Run integration tests
+make verify              # Verify all of the code (ESLint)
+make test                # Run all tests
+make test-integration    # Run the integration tests
 ```
-
-Code with lint errors or failing tests will not be accepted, please use the build tools outlined above.
 
 To compile the client-side JavaScript and CSS, you'll need the following commands. Compiled code is committed to the repository.
 
@@ -115,8 +115,8 @@ make uglify  # Compile and uglify the client-side JavaScript
 
 Useful Resources
 -------
-* [Setting up An Accessibility Dashboard from Scratch with Pa11y on DigitalOcean][resource-una-k]
-
+* [Setting up An Accessibility Dashboard from Scratch with Pa11y on DigitalOcean](https://una.im/pa11y-dash/)
+* [Monitoring Web Accessibility Compliance With Pa11y Dashboard](https://www.lullabot.com/articles/monitoring-web-accessibility-compliance-with-pa11y-dashboard)
 
 Support and Migration
 ---------------------
@@ -128,17 +128,15 @@ We also maintain a [migration guide](MIGRATION.md) to help you migrate.
 | :grey_question: | Major Version | Last Minor Release | Node.js Versions | Support End Date |
 | :-------------- | :------------ | :----------------- | :--------------- | :--------------- |
 | :heart:         | 2             | N/A                | 4+               | N/A              |
-| :hourglass:     | 1             | 1.12               | 0.10–6           | 2016-12-05       |
+| :skull:         | 1             | 1.12               | 0.10–6           | 2016-12-05       |
 
 If you're opening issues related to these, please mention the version that the issue relates to.
 
 
 License
 -------
-
-Pa11y Dashboard is licensed under the [GNU General Public License 3.0][info-license].
-Copyright &copy; 2013–2016, Springer Nature
-
+Pa11y Dashboard is licensed under the [GNU General Public License 3.0][info-license].<br/>
+Copyright &copy; 2013–2017, Team Pa11y
 
 
 [gpl]: http://www.gnu.org/licenses/gpl-3.0.html
@@ -148,7 +146,6 @@ Copyright &copy; 2013–2016, Springer Nature
 [pa11y]: https://github.com/pa11y/pa11y
 [pa11y-webservice-config]: https://github.com/pa11y/webservice#configurations
 [phantom]: http://phantomjs.org/
-[resource-una-k]: https://una.im/pa11y-dash/
 [sidekick-proposal]: https://github.com/pa11y/sidekick/blob/master/PROPOSAL.md
 [travis]: https://travis-ci.org/pa11y/dashboard
 [travis-img]: https://travis-ci.org/pa11y/dashboard.png?branch=master
@@ -156,8 +153,8 @@ Copyright &copy; 2013–2016, Springer Nature
 
 [info-license]: LICENSE
 [info-node]: package.json
-[info-build]: https://travis-ci.org/pa11y/dashboard
+[info-build]: https://travis-ci.org/pa11y/pa11y-dashboard
 [shield-license]: https://img.shields.io/badge/license-GPL%203.0-blue.svg
 [shield-node]: https://img.shields.io/badge/node.js%20support-4–6-brightgreen.svg
-[shield-version]: https://img.shields.io/badge/version-2.1.0-blue.svg
-[shield-build]: https://img.shields.io/travis/pa11y/dashboard/master.svg
+[shield-version]: https://img.shields.io/badge/version-2.2.1-blue.svg
+[shield-build]: https://img.shields.io/travis/pa11y/pa11y-dashboard/master.svg

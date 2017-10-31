@@ -21,11 +21,11 @@ const assert = require('proclaim');
 describe('GET /new', function() {
 
 	beforeEach(function(done) {
-		const req = {
+		const request = {
 			method: 'GET',
 			endpoint: '/new'
 		};
-		this.navigate(req, done);
+		this.navigate(request, done);
 	});
 
 	it('should send a 200 status', function() {
@@ -68,6 +68,11 @@ describe('GET /new', function() {
 			assert.isDefined(field);
 			assert.strictEqual(field.attr('type'), 'text');
 			assert.strictEqual(field.attr('value'), '');
+		});
+
+		it('should have an "actions" field', function() {
+			const field = this.form.find('textarea[name=actions]').eq(0);
+			assert.isDefined(field);
 		});
 
 		it('should have a "username" field', function() {
@@ -117,7 +122,7 @@ describe('POST /new', function() {
 	describe('with invalid query', function() {
 
 		beforeEach(function(done) {
-			const req = {
+			const request = {
 				method: 'POST',
 				endpoint: '/new',
 				form: {
@@ -125,7 +130,7 @@ describe('POST /new', function() {
 					url: ''
 				}
 			};
-			this.navigate(req, done);
+			this.navigate(request, done);
 		});
 
 		it('should send a 200 status', function() {
@@ -141,7 +146,7 @@ describe('POST /new', function() {
 	describe('with valid query', function() {
 
 		beforeEach(function(done) {
-			const req = {
+			const request = {
 				method: 'POST',
 				endpoint: '/new',
 				form: {
@@ -150,7 +155,7 @@ describe('POST /new', function() {
 					standard: 'WCAG2AA'
 				}
 			};
-			this.navigate(req, done);
+			this.navigate(request, done);
 		});
 
 		it('should send a 200 status', function() {
@@ -158,9 +163,9 @@ describe('POST /new', function() {
 		});
 
 		it('should create the task', function(done) {
-			this.webservice.tasks.get({}, function(err, tasks) {
+			this.webservice.tasks.get({}, function(error, tasks) {
 				assert.strictEqual(tasks.length, 4);
-				done();
+				done(error);
 			});
 		});
 

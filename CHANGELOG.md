@@ -1,6 +1,30 @@
 
 # Changelog
 
+## 2.2.2 (2017-03-23)
+
+  * Upgrades `body-parser` and `express`. Fixes a vulnerability in `qs`: https://snyk.io/vuln/npm:qs:20170213
+
+## 2.2.1 (2017-02-07)
+
+  * Fix task editing when no actions are specified
+
+## 2.2.0 (2017-01-27)
+
+  * Add support for Pa11y actions
+  * Update dependencies
+    * pa11y-webservice: ~2.1.2 to ^2.3.0
+
+## 2.1.2 (2016-12-12)
+
+  * Hide the "add" button in readonly mode
+  * Add a contributing guide
+
+## 2.1.1 (2016-11-20)
+
+  * Use arrows instead of plus and minus for collapsibles/expanders
+  * Supply more detailed 500 messages
+
 ## 2.1.0 (2016-11-07)
 
   * Allow for configuration files to be JavaScript rather than JSON
