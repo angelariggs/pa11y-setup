@@ -17,7 +17,7 @@ Metal Toad's Pa11y repo will hold a sample config file (`config.sample.json`) an
 
 * Clone the [Metal Toad Pa11y repo](https://github.com/metaltoad/pa11y).
 * [Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/) through Homebrew with `brew update ` and then `brew install mongodb`.
-  * When you [create the data directory](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb), you may have to `sudo chown` for appropriate permissions.
+  * When you [create the data directory](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb) in the MongoDB instructions, you may have to `sudo chown` for appropriate permissions.
 * Navigate into your pa11y repo and run `npm install`
 
 # Setting Up Pa11y on a New Project
