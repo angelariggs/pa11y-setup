@@ -48,7 +48,8 @@ The Pa11y Dashboard is run locally from the pa11y repo. This is where you'll add
 * In a terminal window, start MongoDB with the `mongod` command
 * In a separate terminal window, navigate to the pa11y repo and start the node server with `NODE_ENV=<project> node index.js`
     * The parameter for `NODE_ENV` is the name of the config file. So if we wanted the dashboard for our `<project>.json` config file, you'd run`NODE_ENV=<project> node index.js`.
-* Go to `http://localhost:4000/` in your browser and click 'Add new URL'.
+* Go to `http://localhost:4000/` in your browser.
+* Click 'Add new URL'.
 * Fill out the appropriate fields, and then click 'Add URL'. **NOTE:** After you add and save a new URL, the URL and Standard fields *cannot* be edited later.
     * Name: Be brief but clear
     * URL: The URL you want to test
