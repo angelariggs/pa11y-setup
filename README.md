@@ -1,7 +1,7 @@
 Pa11y Dashboard
 ===============
 
-### NOTE: The Metal Toad-specific README for setup and use is in the [/config](https://github.com/metaltoad/pa11y/tree/master/config) directory of this repo.
+### NOTE: The company-specific README for setup and use is in the [/config](https://github.com/angelariggs/pa11y-setup/tree/master/config) directory of this repo.
 
 ---
 

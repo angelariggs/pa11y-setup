@@ -1,4 +1,4 @@
-##Contents of This File
+## Contents of This File
 * [Overview of Pa11y](#overview-of-pa11y)
 * [Pa11y Repo Setup](#pa11y-repo-setup)
 * [Setting Up Pa11y on a New Project](#setting-up-pa11y-on-a-new-project)
@@ -7,16 +7,26 @@
 * [Pa11y Commands](#pa11y-commands)
 * [Additional Notes](#additional-notes)
 
+# Usage Notes for Template Repo
+
+This is a copy of a `pa11y` template repo that I created in my company's GitHub org. I forked the original Pa11y Dashboard repo, created a custom README in `/config`, and linked to that custom README by adding a line to the beginning of the original Pa11y Dashboard README.
+
+When I add a `pa11y` test directory to one of our projects, I copy everything over from this template repo. Then I edit the custom README in `/config`, and simply link it back to the custom README in this template. That way, if the custom README ever needs to be updated, I only have to update in one place instead of having to do it in each project.
+
+If you copy this template repo for use at your company or projects, you'll need to go through and replace the references to `https://github.com/angelariggs/pa11y-setup` with the URL of your Pa11y template repo.
+
+Please also check for the need to replace any paths. I keep all of my repos in a Sites directory, so my path examples below will look like `~/Sites/<project>/tests/pa11y/` or `/Users/<user>/Sites/<project>/tests/pa11y`. You'll need to update these to match your uses.
+
 # Overview of Pa11y
 
-[Pa11y](http://pa11y.org) is a suite of tools for testing website accessibility. We're using the [Pa11y Dashboard](https://github.com/pa11y/dashboard) tool for our projects, which uses Node and MongoDB for creating collections of URLs to test against accessibility standards. We've copied the Pa11y Dashboard repo as private repo under the Metal Toad organization, which allows us to have the workflow outlined in the sections below.
+[Pa11y](http://pa11y.org) is a suite of tools for testing website accessibility. We're using the [Pa11y Dashboard](https://github.com/pa11y/dashboard) tool for our projects, which uses Node and MongoDB for creating collections of URLs to test against accessibility standards. We've copied the Pa11y Dashboard repo as new repo under our company organization, which allows us to have the workflow outlined in the sections below.
 
-Metal Toad's Pa11y repo will hold a sample config file (`config.sample.json`) and the Pa11y README. These are located at `pa11y/config/config.sample.json` and `pa11y/config/README.md`, respectively.
+Our Pa11y repo will hold a sample config file (`config.sample.json`) and the Pa11y README. These are located at `pa11y-setup/config/config.sample.json` and `pa11y-setup/config/README.md`, respectively.
 
 # Pa11y Repo Setup
 
-* Clone the [Metal Toad Pa11y repo](https://github.com/metaltoad/pa11y).
-* [Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/) through Homebrew with `brew update ` and then `brew install mongodb`.
+* Clone [this Pa11y repo](https://github.com/angelariggs/pa11y-setup).
+* [Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/) through Homebrew with `brew update` and then `brew install mongodb`.
   * When you [create the data directory](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb) in the MongoDB instructions, you may have to `sudo chown` for appropriate permissions.
 * Navigate into your pa11y repo and run `npm install`
 
@@ -25,7 +35,14 @@ Metal Toad's Pa11y repo will hold a sample config file (`config.sample.json`) an
 **NAMING CONVENTIONS:** Please pay attention to the naming conventions mentioned throughout this README. If you don't, I will know and I will find you, and I will make you pay. Also note that we're using `pa11y`, after the `a11y` convention, *not* `pally`.
 
 * Navigate to the project's `tests` directory. Create a `pa11y` directory with a `config` and a `data` sub-folder. You should end up with `<project root>/tests/pa11y/config` and `<project root>/tests/pa11y/data`.
-* Link to the [Pa11y config README](https://github.com/metaltoad/pa11y/blob/master/config/README.md) in the `tests/pa11y` directory.
+* Edit the original Pa11y Dashboard README in the `pa11y-setup` root, so it links to this `config` README like so:
+
+```
+Pa11y Dashboard
+===============
+
+### NOTE: The company-specific README for setup and use is in the [/config](https://github.com/angelariggs/pa11y-setup/tree/master/config) directory of this repo.
+```
 
 ## Creating a New Config File
 
@@ -35,13 +52,13 @@ Metal Toad's Pa11y repo will hold a sample config file (`config.sample.json`) an
     * **NAMING CONVENTION:** For example, if this config file was for testing AA accessibility standards on a staging site, your `siteMessage` value would be `"<Project> Staging Site: AA Accessibility Check"`.
 * In the `webservice` object, replace the `<project name>` placeholder with the actual database name you want to use.
     * **NAMING CONVENTION:** The database name should match the name of the config file. Following our previous examples, the database name would be `mongodb://localhost/<project>`. If you're going to have a Dashboard for different environments on the same project, include the environment in all of your naming. E.g. `<project>-staging.json` for the config file and `mongodb://localhost/<project>-staging` for the database name.
-* Create a [symlink](http://apple.stackexchange.com/questions/115646/how-can-i-create-a-symbolic-link-in-terminal) from this config file to the pa11y repo, making sure to use absolute paths.
-    * Example: `ln -s ~/Sites/<project>/tests/pa11y/config/<project>.json ~/Sites/pa11y/config`
+* Create a [symlink](http://apple.stackexchange.com/questions/115646/how-can-i-create-a-symbolic-link-in-terminal) from this config file to the `pa11y-setup` repo, making sure to use absolute paths.
+    * Example: `ln -s ~/Sites/<project>/tests/pa11y/config/<project>.json ~/Sites/pa11y-setup/config`
 * Commit the config file to the project repo; no need to commit the symlinked file.
 
 # Using the Pa11y Dashboard
 
-The Pa11y Dashboard is run locally from the pa11y repo. This is where you'll add URLs to test, and run the accessibility tests. You'll also need to be in the pa11y repo to dump and restore the MongoDB databases.
+The Pa11y Dashboard is run locally from the `pa11y-setup` repo. This is where you'll add URLs to test, and run the accessibility tests. You'll also need to be in the `pa11y-setup` repo to dump and restore the MongoDB databases.
 
 ## Dashboard URLs
 
@@ -67,23 +84,22 @@ By design, Pa11y accessibility tests are run locally. We use some MongoDB comman
 ## Dumping the Database
 
 Once you've set up the project's dashboard by adding URLs and running Pa11y against each of them, you'll need to dump the database into the project repo.
-* From the pa11y repo, run `mongodump --db=<project> --out=/Users/<user>/Sites/<project>/tests/pa11y/data`.
+* From the `pa11y-setup` repo, run `mongodump --db=<project> --out=/Users/<user>/Sites/<project>/tests/pa11y/data`.
     * **NOTE:** You do have to use the full `/Users/<user>` instead of `~` for the `out` parameter.
-    * The `db` parameter comes from the database name in our config file. Using the previous Metal Toad repo example, we named the database `mongodb://localhost/mtm-d8-rebuild`, so the full command would be `mongodump --db=<project> --out=/Users/<user>/Sites/<project>/tests/pa11y/data`
+    * The `db` parameter comes from the database name in our config file.
 * In the project's repo, verify that the database folder was created. You should see `<project>/tests/pa11y/data/<project db>`.
     * The `<project db>` folder should have 4 files: `results.bson`, `results.metadata.json`, `tasks.bson`, and `tasks.metadata.json`. The tasks refer to the URLs you added in the Dashboard, and the results refer to the results of running Pa11y against those URLs.
 * Commit these changes to the repo and put in a PR, so the next user can pull down the database. **NAMING CONVENTION:** Let's use `pa11y` for the branch name, in case someone will be using the Dashboard before the PR is merged. Don't make the next person guess which branch they need to checkout.
 
 ## Restoring the Database
 
-Restoring the database is what allows a different user to access the project's Pa11y Dashboard. The steps here assume that the person pulling the Pa11y database already has the Pa11y repo set up.
+Restoring the database is what allows a different user to access the project's Pa11y Dashboard. The steps here assume that the person pulling the Pa11y database already has the `pa11y-setup` repo cloned and ready.
 
 * Navigate to the *project repo* and pull the latest code, so you have the config file. If the PR was merged by the time you've gotten to this step, you'll have the database dump on the dev branch. Otherwise, hope that Past You or your coworkers used a logical branch name for their commit.
-  * If this is your first time using Pa11y on a particular project, you'll need to create a local [symlink](http://apple.stackexchange.com/questions/115646/how-can-i-create-a-symbolic-link-in-terminal) from the config file to your local pa11y repo, making sure to use absolute paths. No need to commit that symlinked file.
-  * Example: `ln -s ~/Sites/mtm-d8-rebuild/tests/pa11y/config/mtm-d8-rebuild.json ~/Sites/pa11y/config`
-* Navigate to the pa11y repo and pull the latest code.
+  * If this is your first time using Pa11y on a particular project, you'll need to create a local [symlink](http://apple.stackexchange.com/questions/115646/how-can-i-create-a-symbolic-link-in-terminal) from the config file to your local `pa11y-setup` repo, making sure to use absolute paths. No need to commit that symlinked file.
+  * Example: `ln -s ~/Sites/<project>/tests/pa11y/config/<project>.json ~/Sites/pa11y-setup/config`
+* Navigate to the `pa11y-setup` repo and pull the latest code.
 * Get the database dump by running `mongorestore --db=<project> /Users/<user>/Sites/<project>/tests/pa11y/data/<project db>`.
-    * For example, the full command would be `mongorestore --db=<project> /Users/<user>/Sites/<project>/tests/pa11y/data/<project>`
 
 Now you're ready to access the project's Pa11y Dashboard! Go back up to the [Using the Pa11y Dashboard](#using-the-pa11y-dashboard) section for steps. If you make changes to the existing URLs, add or delete URLs, or run Pa11y on any of the URLs, you'll need to do another database dump.
 
